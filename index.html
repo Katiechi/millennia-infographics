@@ -3,349 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Millennia Foundation: Kingdom Coders Initiative</title>
+    <title>Hearts of Love Infographic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            color: #1a202c;
+            background-color: #f7fafc;
+            overflow-x: hidden;
         }
-        .chart-container {
-            position: relative;
+        .bg-primary { background-color: #ff9800; }
+        .bg-secondary { background-color: #2c3e50; }
+        .text-primary { color: #ff9800; }
+        .text-secondary { color: #2c3e50; }
+        .logo-text { color: #c0392b; }
+        .border-primary { border-color: #ff9800; }
+
+        .infographic-item {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+        }
+        .infographic-item.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .progress-bar-inner {
+            transition: width 1.5s ease-out;
+        }
+
+        .animated-bar {
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        .animated-bar.visible {
             width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="antialiased">
 
-    <header class="bg-[#003B46] text-white text-center p-8">
-        <h1 class="text-4xl md:text-5xl font-black uppercase">HOL Coders Initiative</h1>
-        <p class="text-lg md:text-xl mt-2 text-[#C4DFE6]">An ongoing initiative by Hearts of Love Africa to empower South Africa's Children and Teens Through Technology and mind-set Revolution to become creative innovators that will become problem solvers and leaders in the society</p>
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-lg fixed w-full z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://heartsofloveafrica.org/wp-content/uploads/2023/12/cropped-WhatsApp_Image_2023-11-14_at_11.18.02_61bc0d07-removebg-preview.png" alt="Hearts of Love Logo" class="w-10 h-10 rounded-full">
+                <span class="text-2xl font-bold text-secondary">Hearts of Love</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#challenge" class="text-gray-600 hover:text-primary transition-colors duration-300">The Challenge</a>
+                <a href="#opportunity" class="text-gray-600 hover:text-primary transition-colors duration-300">The Opportunity</a>
+                <a href="#bootcamp" class="text-gray-600 hover:text-primary transition-colors duration-300">The Bootcamp</a>
+                <a href="#outputs" class="text-gray-600 hover:text-primary transition-colors duration-300">Our Impact</a>
+                <a href="#whyus" class="text-gray-600 hover:text-primary transition-colors duration-300">Why Us?</a>
+            </div>
+        </nav>
     </header>
 
-    <main class="container mx-auto p-4 md:p-8">
-        <section id="challenge" class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-[#07575B]">The Challenge: A Tale of Two Crises</h2>
-                <p class="text-gray-600 mt-2 max-w-3xl mx-auto">South Africa faces a critical juncture where high youth unemployment collides with a rapidly evolving digital landscape, creating a profound skills gap that demands urgent action. HOL has uptaken the initiative to empower kids with coding skills in hopes of them becoming the future problem solvers in the society</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                    <p class="text-6xl font-extrabold text-[#66A5AD]">46.1%</p>
-                    <h3 class="text-xl font-bold mt-2 text-[#07575B]">Youth Unemployment Rate</h3>
-                    <p class="text-gray-500 mt-2">One of the highest rates globally, with over half of young people aged 15-34 unable to find work.</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                    <p class="text-6xl font-extrabold text-[#66A5AD]">&lt;5%</p>
-                    <h3 class="text-xl font-bold mt-2 text-[#07575B]">Youth with Tech Skills</h3>
-                    <p class="text-gray-500 mt-2">Of youth are trained in advanced skills like programming, data analysis, or cybersecurity.</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 text-center md:col-span-2 lg:col-span-1">
-                    <p class="text-6xl font-extrabold text-[#66A5AD]">58.7%</p>
-                    <h3 class="text-xl font-bold mt-2 text-[#07575B]">No Prior Work Experience</h3>
-                    <p class="text-gray-500 mt-2">Among the 4.8 million unemployed youth, hindering their entry into the job market.</p>
-                </div>
+    <main class="pt-24">
+
+        <!-- Hero Section - Slide 1 -->
+        <section class="bg-primary text-white py-20 md:py-32 rounded-b-3xl">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Kingdom Coders: Empowering Youth with Faith + Technology + AI</h1>
+                <p class="mt-4 text-lg md:text-2xl font-light">Millennia Foundation Apprentice Programme, Sept 3, 2025</p>
+                <p class="mt-8 text-xl md:text-3xl font-bold">Touch · Train · Transform</p>
             </div>
         </section>
 
-        <section id="opportunity" class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-[#07575B]">The Digital Dawn: A Booming Tech Sector</h2>
-                <p class="text-gray-600 mt-2 max-w-3xl mx-auto">Despite the challenges, South Africa's tech industry is a beacon of opportunity, with massive growth potential and a clear demand for skilled professionals.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-center mb-4 text-[#07575B]">Projected Tech Job Growth by 2030</h3>
-                     <div class="chart-container">
-                        <canvas id="jobGrowthChart"></canvas>
+        <!-- Who We Are - Slide 2 -->
+        <section id="who" class="py-16 md:py-24 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-5xl font-bold text-secondary">Who We Are</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Hearts of Love is a faith-based organization committed to empowering youth spiritually and economically.</p>
+                <div class="mt-12 flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-16">
+                    <div class="infographic-item text-center">
+                        <div class="w-24 h-24 mx-auto bg-primary rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">
+                            T
+                        </div>
+                        <h3 class="text-xl font-bold logo-text">Touch</h3>
+                        <p class="mt-2 text-sm text-gray-700">Reach young hearts with faith.</p>
                     </div>
-                    <p class="text-gray-500 mt-4 text-center">Digitization is set to create a massive wave of new roles, highlighting the urgent need for a qualified workforce.</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-center mb-4 text-[#07575B]">Current IT Professional Shortage</h3>
-                    <div class="chart-container">
-                        <canvas id="shortageChart"></canvas>
+                    <div class="infographic-item text-center">
+                        <div class="w-24 h-24 mx-auto bg-primary rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">
+                            T
+                        </div>
+                        <h3 class="text-xl font-bold logo-text">Train</h3>
+                        <p class="mt-2 text-sm text-gray-700">Equip with coding + AI skills.</p>
                     </div>
-                    <p class="text-gray-500 mt-4 text-center">There is a significant, immediate gap between the demand for skilled IT professionals and the available talent pool.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="solution" class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-[#07575B]">The Solution: A 3-Day Coding Bootcamp</h2>
-                <p class="text-gray-600 mt-2 max-w-3xl mx-auto">A mindset-driven and legacy leadership initiative to equip youth with the skills, confidence, and connections to thrive in the digital economy.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-bold text-center mb-4 text-[#07575B]">Our 3-Day Bootcamp Agenda</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    <div class="p-4 border border-[#C4DFE6] rounded-lg">
-                        <p class="text-2xl font-bold text-[#003B46]">Day 1</p>
-                        <p class="mt-2 text-sm text-gray-600">**Morning:** Arrival, registration, and fellowship. Welcome and keynote address. Panel presentations. **Afternoon:** Lunch break. Breakaway Sessions (Session 1). Q&A with judges.</p>
-                    </div>
-                    <div class="p-4 border border-[#C4DFE6] rounded-lg">
-                        <p class="text-2xl font-bold text-[#003B46]">Day 2</p>
-                        <p class="mt-2 text-sm text-gray-600">**Morning:** In-depth coding workshops and hands-on projects. **Afternoon:** AI basics and practical applications. Mindset and Legacy Leadership integration discussions. Collaborative sessions and project work.</p>
-                    </div>
-                    <div class="p-4 border border-[#C4DFE6] rounded-lg">
-                        <p class="text-2xl font-bold text-[#003B46]">Day 3</p>
-                        <p class="mt-2 text-sm text-gray-600">**Morning:** Panel Breakaway Sessions (Session 2). **Afternoon:** Tea break. Review, feedback, and final announcements. Announcement of three winners. Session closes.</p>
+                    <div class="infographic-item text-center">
+                        <div class="w-24 h-24 mx-auto bg-primary rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">
+                            T
+                        </div>
+                        <h3 class="text-xl font-bold logo-text">Transform</h3>
+                        <p class="mt-2 text-sm text-gray-700">Communities through empowered youth.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="judging-criteria" class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-[#07575B]">The Judging: How Proposals Are Evaluated</h2>
-                <p class="text-gray-600 mt-2 max-w-3xl mx-auto">The judging criteria are weighted to ensure a holistic evaluation of each proposal, prioritizing tangible impact and practicality.</p>
+        <!-- The Challenge Infographic Section - Slide 3 -->
+        <section id="challenge" class="bg-secondary text-white py-16 md:py-24 rounded-3xl">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold">The Challenge</h2>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                    <div class="infographic-item p-8 bg-white text-secondary rounded-xl shadow-xl">
+                        <h3 class="text-5xl font-extrabold text-primary">46.1%</h3>
+                        <p class="mt-2 text-gray-700">Youth Unemployment in SA</p>
+                    </div>
+                    <div class="infographic-item p-8 bg-white text-secondary rounded-xl shadow-xl">
+                        <h3 class="text-5xl font-extrabold text-primary">&lt;5%</h3>
+                        <p class="mt-2 text-gray-700">trained in programming</p>
+                    </div>
+                    <div class="infographic-item p-8 bg-white text-secondary rounded-xl shadow-xl">
+                        <h3 class="text-5xl font-extrabold text-primary">100%</h3>
+                        <p class="mt-2 text-gray-700">increase in AI demand in Africa</p>
+                    </div>
+                    <div class="infographic-item p-8 bg-white text-secondary rounded-xl shadow-xl">
+                        <h3 class="text-5xl font-extrabold text-primary">20k-70k</h3>
+                        <p class="mt-2 text-gray-700">IT professional shortage</p>
+                    </div>
+                </div>
+                <p class="mt-12 italic text-lg opacity-80 max-w-2xl mx-auto">"Skills gap devours young people’s dreams."</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-bold text-center mb-4 text-[#07575B]">Judging Criteria Weighting</h3>
-                <div class="chart-container">
-                    <canvas id="criteriaChart"></canvas>
+        </section>
+
+        <!-- The Opportunity Infographic Section - Slide 4 -->
+        <section id="opportunity" class="py-16 md:py-24 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-5xl font-bold text-secondary">The Opportunity</h2>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="infographic-item p-8 bg-white rounded-xl shadow-xl border-t-4 border-primary">
+                        <h3 class="text-5xl font-extrabold text-primary">1.2M</h3>
+                        <p class="mt-2 text-gray-700">New tech jobs by 2030</p>
+                    </div>
+                    <div class="infographic-item p-8 bg-white rounded-xl shadow-xl border-t-4 border-primary">
+                        <h3 class="text-5xl font-extrabold text-primary">87-95%</h3>
+                        <p class="mt-2 text-gray-700">Job placement from bootcamps</p>
+                        <div class="mt-4 w-full bg-gray-200 rounded-full h-4">
+                            <div class="bg-primary h-4 rounded-full progress-bar-inner"></div>
+                        </div>
+                    </div>
+                    <div class="infographic-item p-8 bg-white rounded-xl shadow-xl border-t-4 border-primary">
+                        <h3 class="text-2xl font-bold text-primary mb-2">A Proven Bridge</h3>
+                        <p class="mt-2 text-gray-700">Hearts of Love connects faith, AI, and opportunity, with models like Bethel, Coding Crew, and Indigitous proving success.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="impact" class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-[#07575B]">Projected Impact: Transforming Lives</h2>
-                <p class="text-gray-600 mt-2 max-w-3xl mx-auto">Our measurable goals are designed to create a ripple effect of positive change, from individual empowerment to community-wide job creation.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-center mb-4 text-[#07575B]">Bootcamp Success Metrics</h3>
-                    <div class="chart-container" style="height:350px;">
-                        <canvas id="successMetricsChart"></canvas>
+        <!-- Bootcamp Overview Infographic Section - Slides 5 & 6 -->
+        <section id="bootcamp" class="bg-gray-100 py-16 md:py-24 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-5xl font-bold text-secondary">3-Day Bootcamp</h2>
+                <p class="mt-4 text-lg text-gray-600">Our proposal is simple: Touch, Train, Transform.</p>
+                <div class="mt-12">
+                    <div class="infographic-item">
+                        <h3 class="text-2xl font-bold logo-text mb-4">Touch → Train → Transform</h3>
+                        <div class="relative w-full h-1 bg-gray-300 rounded-full">
+                            <div class="absolute top-0 left-0 h-1 bg-primary animated-bar"></div>
+                        </div>
                     </div>
-                    <p class="text-gray-500 mt-4 text-center">By focusing on tangible outcomes, we aim to significantly boost the job readiness and career prospects of our participants.</p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-bold text-center mb-4 text-[#07575B]">Employment Rate Comparison</h3>
-                    <div class="chart-container" style="height:350px;">
-                        <canvas id="employmentRateChart"></canvas>
+                    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                        <!-- Day 1 -->
+                        <div class="infographic-item flex flex-col items-center">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">1</div>
+                            <div class="bg-white p-6 rounded-lg shadow-xl text-left h-full">
+                                <h4 class="text-xl font-bold logo-text mb-2">Day 1: Faith + Tech Foundations</h4>
+                                <p class="text-sm italic text-gray-500 mb-2">'In the beginning, God created…' (Gen 1:1)</p>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>WordPress basics + setup</li>
+                                    <li>AI exercise: Generate 'About Us' text with ChatGPT</li>
+                                    <li>Inspire youth with vision, faith, and hope</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Day 2 -->
+                        <div class="infographic-item flex flex-col items-center">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">2</div>
+                            <div class="bg-white p-6 rounded-lg shadow-xl text-left h-full">
+                                <h4 class="text-xl font-bold logo-text mb-2">Day 2: Design & Creativity</h4>
+                                <p class="text-sm italic text-gray-500 mb-2">'Write the vision and make it plain.' (Hab 2:2)</p>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>Learn themes & Elementor</li>
+                                    <li>AI exercise: Generate homepage images + color palette</li>
+                                    <li>Teach coding, AI tools, and digital skills</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Day 3 -->
+                        <div class="infographic-item flex flex-col items-center">
+                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">3</div>
+                            <div class="bg-white p-6 rounded-lg shadow-xl text-left h-full">
+                                <h4 class="text-xl font-bold logo-text mb-2">Day 3: Branding & Deployment</h4>
+                                <p class="text-sm italic text-gray-500 mb-2">'You are the light of the world.' (Matt 5:14)</p>
+                                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                    <li>Branding & logos with Canva AI</li>
+                                    <li>Hosting basics & site deployment</li>
+                                    <li>Create job readiness and testimonies</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-gray-500 mt-4 text-center">We aim to match the high success rates of established coding bootcamps, providing a clear pathway to employment.</p>
                 </div>
             </div>
         </section>
 
+        <!-- Expected Outputs & Impact Goals Section - Slides 10 & 11 -->
+        <section id="outputs" class="bg-secondary text-white py-16 md:py-24 rounded-3xl">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold">Our Impact</h2>
+                <p class="mt-4 text-lg opacity-80 max-w-2xl mx-auto">We're not just teaching skills; we're building futures. Every participant will have tangible outputs and contribute to our long-term goals.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Expected Outputs -->
+                    <div class="infographic-item text-left">
+                        <h3 class="text-3xl font-bold text-primary mb-4">Expected Outputs</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-8 h-8 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 10a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM9 14a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"></path></svg>
+                                <div>
+                                    <h4 class="font-bold">WordPress Demo Site</h4>
+                                    <p class="text-sm opacity-80">Each participant leaves with a functioning website.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-8 h-8 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 10a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM9 14a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"></path></svg>
+                                <div>
+                                    <h4 class="font-bold">Logo & Brand Identity</h4>
+                                    <p class="text-sm opacity-80">Core assets for their digital presence.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-8 h-8 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 10a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM9 14a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"></path></svg>
+                                <div>
+                                    <h4 class="font-bold">AI-Generated Content</h4>
+                                    <p class="text-sm opacity-80">Knowledge on using AI for copywriting and design.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Impact Goals -->
+                    <div class="infographic-item text-left">
+                        <h3 class="text-3xl font-bold text-primary mb-4">Impact Goals</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-8 h-8 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 10a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM9 14a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"></path></svg>
+                                <div>
+                                    <h4 class="font-bold">80% Certification</h4>
+                                    <p class="text-sm opacity-80">Our goal for participants to earn a basic certification.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-8 h-8 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 10a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM9 14a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"></path></svg>
+                                <div>
+                                    <h4 class="font-bold">50% Job Networks</h4>
+                                    <p class="text-sm opacity-80">Connecting youth to vital employment opportunities.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <svg class="w-8 h-8 text-white flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 10a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM9 14a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"></path></svg>
+                                <div>
+                                    <h4 class="font-bold">Spirit-led Testimonies</h4>
+                                    <p class="text-sm opacity-80">Transformed lives and communities through faith.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources & Why Us Section - Slides 12 & 13 -->
+        <section id="whyus" class="py-16 md:py-24 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-5xl font-bold text-secondary">Why Hearts of Love?</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Our unique model, resources, and deep commitment set us apart.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="infographic-item text-left">
+                        <h3 class="text-3xl font-bold text-primary mb-4">Our Resources</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>**Trainers:** Hearts of Love mentors + Millennia experts</li>
+                            <li>**Tools:** WordPress, Elementor, Canva AI, Truehost</li>
+                            <li>**Participants:** 20–40 youth (ages 18–35)</li>
+                        </ul>
+                    </div>
+                    <div class="infographic-item text-left">
+                        <h3 class="text-3xl font-bold text-primary mb-4">Our Commitment</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Deep commitment to youth discipleship.</li>
+                            <li>Proven Touch, Train, Transform model.</li>
+                            <li>Faith-rooted, tech-driven, results-focused.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing & Call to Action - Slide 14 -->
+        <section class="bg-primary text-white py-16 md:py-24 rounded-t-3xl text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-5xl font-bold">Raising Kingdom Coders</h2>
+                <p class="mt-4 italic text-xl opacity-80">"Availability + Faith = Transformation."</p>
+                <p class="mt-8 text-4xl md:text-5xl font-extrabold logo-text">Touch · Train · Transform</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-secondary text-white py-8 text-center">
+            <div class="container mx-auto px-6">
+                <p>&copy; 2025 Hearts of Love. All Rights Reserved.</p>
+            </div>
+        </footer>
     </main>
 
-    <footer class="bg-[#003B46] text-white text-center p-6 mt-12">
-        <p>&copy; 2025 Hearts of Love Africa. All Rights Reserved.</p>
-    </footer>
-
     <script>
-        const energeticAndPlayfulPalette = {
-            primary: '#07575B',
-            secondary: '#66A5AD',
-            accent: '#C4DFE6',
-            background: '#003B46',
-            text: '#FFFFFF'
-        };
-
-        function wrapLabel(label, maxWidth) {
-            const words = label.split(' ');
-            const lines = [];
-            let currentLine = '';
-            for (const word of words) {
-                if ((currentLine + word).length > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = '';
-                }
-                currentLine += word + ' ';
-            }
-            lines.push(currentLine.trim());
-            return lines;
-        }
-
-        const tooltipTitleCallback = function(tooltipItems) {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            } else {
-                return label;
-            }
-        };
-
-        const commonChartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: energeticAndPlayfulPalette.primary
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: energeticAndPlayfulPalette.primary
-                    },
-                    grid: {
-                        color: '#e0e0e0'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: energeticAndPlayfulPalette.primary
-                    },
-                    grid: {
-                        display: false
-                    }
-                }
-            }
-        };
-
-        new Chart(document.getElementById('jobGrowthChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Current Tech Jobs', 'Projected Tech Jobs by 2030'],
-                datasets: [{
-                    label: 'Number of Jobs',
-                    data: [70000, 1200000],
-                    backgroundColor: [energeticAndPlayfulPalette.secondary, energeticAndPlayfulPalette.primary],
-                    borderColor: [energeticAndPlayfulPalette.secondary, energeticAndPlayfulPalette.primary],
-                    borderWidth: 1
-                }]
-            },
-            options: { ...commonChartOptions }
-        });
-
-        new Chart(document.getElementById('shortageChart'), {
-            type: 'doughnut',
-            data: {
-                labels: [wrapLabel('Skilled Professionals Needed', 16), wrapLabel('Current Available Professionals', 16)],
-                datasets: [{
-                    data: [70000, 20000],
-                    backgroundColor: [energeticAndPlayfulPalette.primary, energeticAndPlayfulPalette.accent],
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                         labels: {
-                            color: energeticAndPlayfulPalette.primary
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        const progressBar = entry.target.querySelector('.progress-bar-inner');
+                        if (progressBar) {
+                            progressBar.style.width = '90%';
                         }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback
+                        const animatedBar = entry.target.querySelector('.animated-bar');
+                        if (animatedBar) {
+                            animatedBar.style.width = '100%';
+                        }
+                    } else {
+                        entry.target.classList.remove('visible');
+                        const progressBar = entry.target.querySelector('.progress-bar-inner');
+                        if (progressBar) {
+                            progressBar.style.width = '0%';
+                        }
+                        const animatedBar = entry.target.querySelector('.animated-bar');
+                        if (animatedBar) {
+                            animatedBar.style.width = '0%';
                         }
                     }
-                }
-            }
-        });
+                });
+            }, {
+                threshold: 0.1
+            });
 
-        new Chart(document.getElementById('criteriaChart'), {
-            type: 'radar',
-            data: {
-                labels: [wrapLabel('Proposed Impact', 16), 'Practicality', 'Rollout Plan', 'Ideas/Plans', wrapLabel('Kingdom Alignment', 16)],
-                datasets: [{
-                    label: 'Weighting (%)',
-                    data: [25, 25, 25, 15, 10],
-                    fill: true,
-                    backgroundColor: 'rgba(102, 165, 173, 0.5)',
-                    borderColor: energeticAndPlayfulPalette.secondary,
-                    pointBackgroundColor: energeticAndPlayfulPalette.primary,
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: energeticAndPlayfulPalette.secondary
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: energeticAndPlayfulPalette.primary
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback
-                        }
-                    }
-                },
-                scales: {
-                    r: {
-                        angleLines: {
-                            color: '#e0e0e0'
-                        },
-                        grid: {
-                            color: '#e0e0e0'
-                        },
-                        pointLabels: {
-                            font: {
-                                size: 12
-                            },
-                            color: energeticAndPlayfulPalette.primary
-                        },
-                        ticks: {
-                            display: false,
-                            stepSize: 10
-                        }
-                    }
-                }
-            }
-        });
-
-        new Chart(document.getElementById('successMetricsChart'), {
-            type: 'bar',
-            data: {
-                labels: [wrapLabel('Participants Gaining Certification', 16), wrapLabel('Connected to Job Networks', 16)],
-                datasets: [{
-                    label: 'Target Percentage',
-                    data: [80, 50],
-                    backgroundColor: [energeticAndPlayfulPalette.secondary, energeticAndPlayfulPalette.primary],
-                    borderColor: [energeticAndPlayfulPalette.secondary, energeticAndPlayfulPalette.primary],
-                    borderWidth: 1,
-                    barThickness: 50
-                }]
-            },
-            options: { ...commonChartOptions }
-        });
-
-        new Chart(document.getElementById('employmentRateChart'), {
-            type: 'bar',
-            data: {
-                labels: ['SA Youth Unemployment', 'Target Bootcamp Employment'],
-                datasets: [{
-                    label: 'Employment Rate (%)',
-                    data: [46.1, 90],
-                    backgroundColor: [energeticAndPlayfulPalette.secondary, energeticAndPlayfulPalette.primary],
-                    borderColor: [energeticAndPlayfulPalette.secondary, energeticAndPlayfulPalette.primary],
-                    borderWidth: 1,
-                    barThickness: 50
-                }]
-            },
-            options: { ...commonChartOptions }
+            document.querySelectorAll('.infographic-item').forEach(item => {
+                observer.observe(item);
+            });
         });
     </script>
 </body>
